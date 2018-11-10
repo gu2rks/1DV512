@@ -34,14 +34,17 @@ public class FCFS {
 	}
 
 	public void printTable() {
-		System.out.println("| Process Id | Arrival Time | Burst Time | Completed Time | Turnaround Time | Waiting Time |");
-		System.out.println("|____________|______________|____________|________________|_________________|______________|");
+		System.out.println("Scheduling a list of processes using the FCFS algorithm"
+				+ "\n__________________________________________________________________"
+				+ "\n|    PID   |    AT    |    BT    |    CT    |    TAT   |    WT    |"
+				+ "\n|__________|__________|__________|__________|__________|__________|");
 
 		for (Process a_process : processes) {
-			System.out.printf("|%7s     |%9s     |%7s     |%11s     |%12s     |%9s     |\n", a_process.getProcessId(),
+			System.out.printf("|%5s     |%5s     |%5s     |%5s     |%5s     |%5s     |\n", a_process.getProcessId(),
 					a_process.getArrivalTime(), a_process.getBurstTime(), a_process.getCompletedTime(),
 					a_process.getTurnaroundTime(), a_process.getWaitingTime());
-			System.out.println("|____________|______________|____________|________________|_________________|______________|");
+			System.out.println("|__________|__________|__________|__________|__________|__________|");
+
 		}
 	}
 
