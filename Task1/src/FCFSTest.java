@@ -34,7 +34,6 @@ public class FCFSTest {
 
 		FCFS myFcfs = new FCFS(listOfProcesses);
 		myFcfs.run();
-		myFcfs.printTable();
 
 		for (int i = 0; i < listOfProcesses.size(); i++) {
 			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
