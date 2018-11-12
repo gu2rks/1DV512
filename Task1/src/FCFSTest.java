@@ -41,6 +41,9 @@ public class FCFSTest {
 			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
 			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
 		}
+		myFcfs.printTable();
+		myFcfs.printGanttChart();
+
 	}
 
 	@org.junit.Test
