@@ -3,6 +3,7 @@
  * Course: 	Operating Systems
  * Code: 	1DV512
  * Author: 	Suejb Memeti
+ * Refactoring by: Amata Anantaprayoon (aa224iu)
  * Date: 	November, 2018
  */
 
@@ -40,6 +41,9 @@ public class FCFSTest {
 			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
 			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
 		}
+		myFcfs.printTable();
+		myFcfs.printGanttChart();
+
 	}
 
 	@org.junit.Test
