@@ -33,27 +33,27 @@ public class Process {
 		this.waitingTime = waitingTime;
 	}
 
-	public int getArrivalTime() {
+	public int getArrivalTime(){
 		return arrivalTime;
 	}
 
-	public int getBurstTime() {
+	public int getBurstTime(){
 		return burstTime;
 	}
 
-	public int getCompletedTime() {
+	public int getCompletedTime(){
 		return completedTime;
 	}
 
-	public int getTurnaroundTime() {
+	public int getTurnaroundTime(){
 		return turnaroundTime;
 	}
 
-	public int getWaitingTime() {
+	public int getWaitingTime(){
 		return waitingTime;
 	}
 
-	public int getProcessId() {
+	public int getProcessId(){
 		return processId;
 	}
 }
