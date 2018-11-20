@@ -14,37 +14,36 @@ import java.util.ArrayList;
 
 public class FCFSTest {
 
-//	@org.junit.Test
-//	public void test1() {
-//		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
-//
-//		//expected results
-//		int[] processIds = new int[]{1, 2, 3};
-//		int[] processCT  = new int[]{2, 4, 11};
-//		int[] processTAT = new int[]{2, 1, 6};
-//		int[] processWT  = new int[]{0, 0, 0};
-//
-//		//list of processes to be scheduled
-//		//the first method parameter is the process id
-//		//the second method parameter is the arrival time
-//		//the third method parameter is the burst time
-//		listOfProcesses.add(new Process(1, 0, 2));
-//		listOfProcesses.add(new Process(2, 3, 1));
-//		listOfProcesses.add(new Process(3, 5, 6));
-//
-//		FCFS myFcfs = new FCFS(listOfProcesses);
-//		myFcfs.run();
-//
-//		for (int i = 0; i < listOfProcesses.size(); i++) {
-//			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
-//			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
-//			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
-//			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
-//		}
-//		myFcfs.printTable();
-//		myFcfs.printGanttChart();
-//
-//	}
+	@org.junit.Test
+	public void test1() {
+		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
+
+		//expected results
+		int[] processIds = new int[]{1, 2, 3};
+		int[] processCT  = new int[]{2, 4, 11};
+		int[] processTAT = new int[]{2, 1, 6};
+		int[] processWT  = new int[]{0, 0, 0};
+
+		//list of processes to be scheduled
+		//the first method parameter is the process id
+		//the second method parameter is the arrival time
+		//the third method parameter is the burst time
+		listOfProcesses.add(new Process(1, 0, 2));
+		listOfProcesses.add(new Process(2, 3, 1));
+		listOfProcesses.add(new Process(3, 5, 6));
+
+		FCFS myFcfs = new FCFS(listOfProcesses);
+		myFcfs.run();
+		System.out.println(listOfProcesses.size());
+		
+		for (int i = 0; i < listOfProcesses.size(); i++) {
+			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
+			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
+			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
+			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
+		}
+
+	}
 
 //	@org.junit.Test
 //	public void test2() {
@@ -64,7 +63,7 @@ public class FCFSTest {
 //
 //		FCFS myFcfs = new FCFS(listOfProcesses);
 //		myFcfs.run();
-//
+//		
 //		for (int i = 0; i < listOfProcesses.size(); i++) {
 //			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
 //			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
@@ -100,31 +99,31 @@ public class FCFSTest {
 //		}
 //	}
 //
-	@org.junit.Test
-	public void test4() {
-		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
-
-		listOfProcesses.add(new Process(1, 0, 18));
-		listOfProcesses.add(new Process(2, 0, 5));
-		listOfProcesses.add(new Process(3, 0, 7));
-
-
-		int[] processIds = new int[]{1, 2, 3};
-		int[] processCT  = new int[]{18, 23, 30};
-		int[] processTAT = new int[]{18, 23, 30};
-		int[] processWT  = new int[]{0, 18, 23};
-
-
-		FCFS myFcfs = new FCFS(listOfProcesses);
-		myFcfs.run();
-
-		for (int i = 0; i < listOfProcesses.size(); i++) {
-			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
-			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
-			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
-			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
-		}
-	}
+//	@org.junit.Test
+//	public void test4() {
+//		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
+//
+//		listOfProcesses.add(new Process(1, 0, 18));
+//		listOfProcesses.add(new Process(2, 0, 5));
+//		listOfProcesses.add(new Process(3, 0, 7));
+//
+//
+//		int[] processIds = new int[]{1, 2, 3};
+//		int[] processCT  = new int[]{18, 23, 30};
+//		int[] processTAT = new int[]{18, 23, 30};
+//		int[] processWT  = new int[]{0, 18, 23};
+//
+//
+//		FCFS myFcfs = new FCFS(listOfProcesses);
+//		myFcfs.run();
+//
+//		for (int i = 0; i < listOfProcesses.size(); i++) {
+//			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
+//			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
+//			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
+//			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
+//		}
+//	}
 //
 //	@org.junit.Test
 //	public void test5() {
@@ -154,31 +153,31 @@ public class FCFSTest {
 //		}
 //	}
 //
-	@org.junit.Test
-	public void test6() {
-		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
-
-		//The example from the project description
-		listOfProcesses.add(new Process(1, 0, 18));
-		listOfProcesses.add(new Process(2, 2, 5));
-		listOfProcesses.add(new Process(3, 4, 7));
-
-
-		int[] processIds = new int[]{1, 2, 3};
-		int[] processCT  = new int[]{18, 23, 30};
-		int[] processTAT = new int[]{18, 21, 26};
-		int[] processWT  = new int[]{0, 16, 19};
-
-
-		FCFS myFcfs = new FCFS(listOfProcesses);
-		myFcfs.run();
-
-		for (int i = 0; i < listOfProcesses.size(); i++) {
-			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
-			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
-			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
-			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
-		}
-	}
+//	@org.junit.Test
+//	public void test6() {
+//		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
+//
+//		//The example from the project description
+//		listOfProcesses.add(new Process(1, 0, 18));
+//		listOfProcesses.add(new Process(2, 2, 5));
+//		listOfProcesses.add(new Process(3, 4, 7));
+//
+//
+//		int[] processIds = new int[]{1, 2, 3};
+//		int[] processCT  = new int[]{18, 23, 30};
+//		int[] processTAT = new int[]{18, 21, 26};
+//		int[] processWT  = new int[]{0, 16, 19};
+//
+//
+//		FCFS myFcfs = new FCFS(listOfProcesses);
+//		myFcfs.run();
+//
+//		for (int i = 0; i < listOfProcesses.size(); i++) {
+//			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
+//			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
+//			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
+//			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
+//		}
+//	}
 
 }
