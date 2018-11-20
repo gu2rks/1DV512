@@ -100,31 +100,31 @@ public class FCFSTest {
 //		}
 //	}
 //
-//	@org.junit.Test
-//	public void test4() {
-//		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
-//
-//		listOfProcesses.add(new Process(1, 0, 18));
-//		listOfProcesses.add(new Process(2, 0, 5));
-//		listOfProcesses.add(new Process(3, 0, 7));
-//
-//
-//		int[] processIds = new int[]{1, 2, 3};
-//		int[] processCT  = new int[]{18, 23, 30};
-//		int[] processTAT = new int[]{18, 23, 30};
-//		int[] processWT  = new int[]{0, 18, 23};
-//
-//
-//		FCFS myFcfs = new FCFS(listOfProcesses);
-//		myFcfs.run();
-//
-//		for (int i = 0; i < listOfProcesses.size(); i++) {
-//			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
-//			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
-//			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
-//			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
-//		}
-//	}
+	@org.junit.Test
+	public void test4() {
+		ArrayList<Process> listOfProcesses = new ArrayList<Process>();
+
+		listOfProcesses.add(new Process(1, 0, 18));
+		listOfProcesses.add(new Process(2, 0, 5));
+		listOfProcesses.add(new Process(3, 0, 7));
+
+
+		int[] processIds = new int[]{1, 2, 3};
+		int[] processCT  = new int[]{18, 23, 30};
+		int[] processTAT = new int[]{18, 23, 30};
+		int[] processWT  = new int[]{0, 18, 23};
+
+
+		FCFS myFcfs = new FCFS(listOfProcesses);
+		myFcfs.run();
+
+		for (int i = 0; i < listOfProcesses.size(); i++) {
+			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
+			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
+			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
+			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
+		}
+	}
 //
 //	@org.junit.Test
 //	public void test5() {

@@ -41,6 +41,7 @@ public class FCFS {
 		while (!queue.isEmpty() && !finish) {
 			nextProcess();
 		}
+		printTable();
 		System.out.println("done time" + processTimer);
 	}
 
@@ -59,10 +60,14 @@ public class FCFS {
 	private void execute() {
 		brustTimer++;
 		processTimer++;
+		//when process X is done
 		if (brustTimer == currentProcess.burstTime) {
-			//set stuff
+			//set CT
 			currentProcess.setCompletedTime(processTimer);
 			System.out.println("CT : "+currentProcess.completedTime);
+			//set TAT
+			currentProcess.setTurnaroundTime(currentProcess.completedTime-currentProcess.arrivalTime);
+			System.out.println("TAT : "+currentProcess.turnaroundTime);
 			processes.add(currentProcess);
 			System.out.println("add in processes" + processes.get(processes.size() - 1).processId);
 			queue.remove(0);
