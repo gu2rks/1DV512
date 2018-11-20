@@ -11,25 +11,64 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class FCFS {
 
 	// The list of processes to be scheduled
-	public ArrayList<Process> processes;
+	public ArrayList<Process> processes = new ArrayList<Process>();
+	// Queue
+	private ArrayList<Process> queue;
 
 	private int m_completedTime;
+	private int processX = 0;
+	private int processTimer = 0;
+	private int brustTimer = 0;
+	private int idle = 0;
+	private boolean finish = false;
+	private boolean isWorking = false;
+	Process currentProcess;
 
 	// Class constructor
 	public FCFS(ArrayList<Process> processes) {
-		this.processes = sortByAT(processes);
-		this.m_completedTime = 0;
+
+		queue = sortByAT(processes);
 	}
 
 	public void run() {
-		for (Process a_process : processes) {
-			a_process.setCompletedTime(calculateCT(a_process));
-			a_process.setTurnaroundTime(calculateTAT(a_process));
-			a_process.setWaitingTime(calculateWT(a_process));
+
+		while (!queue.isEmpty() && !finish) {
+			nextProcess();
+		}
+		System.out.println("done time" + processTimer);
+	}
+
+	private void nextProcess() {
+		if (!isWorking) {
+			currentProcess = queue.get(0);
+			System.out.println("new pid in queue" + currentProcess.processId);
+			isWorking = true;
+
+		}
+		else {
+			execute();
+		}
+	}
+
+	private void execute() {
+		brustTimer++;
+		processTimer++;
+		if (brustTimer == currentProcess.burstTime) {
+			//set stuff
+			currentProcess.setCompletedTime(processTimer);
+			System.out.println("CT : "+currentProcess.completedTime);
+			processes.add(currentProcess);
+			System.out.println("add in processes" + processes.get(processes.size() - 1).processId);
+			queue.remove(0);
+			isWorking = false;
+
+			brustTimer = 0; // reset
 		}
 
 	}
@@ -117,22 +156,22 @@ public class FCFS {
 		return m_processes;
 	}
 
-	private int calculateCT(Process a_process) {
-		if (a_process.getArrivalTime() <= m_completedTime) {
-			m_completedTime = m_completedTime + a_process.getBurstTime();
-		} else {
-			m_completedTime = a_process.getArrivalTime() + a_process.getBurstTime();
-		}
-		return m_completedTime;
-	}
-
-	private int calculateTAT(Process a_process) {
-		int tat = a_process.getCompletedTime() - a_process.getArrivalTime();
-		return tat;
-	}
-
-	private int calculateWT(Process a_process) {
-		int wt = a_process.getTurnaroundTime() - a_process.getBurstTime();
-		return wt;
-	}
+//	private int calculateCT(Process a_process) {
+//		if (a_process.getArrivalTime() <= m_completedTime) {
+//			m_completedTime = m_completedTime + a_process.getBurstTime();
+//		} else {
+//			m_completedTime = a_process.getArrivalTime() + a_process.getBurstTime();
+//		}
+//		return m_completedTime;
+//	}
+//
+//	private int calculateTAT(Process a_process) {
+//		int tat = a_process.getCompletedTime() - a_process.getArrivalTime();
+//		return tat;
+//	}
+//
+//	private int calculateWT(Process a_process) {
+//		int wt = a_process.getTurnaroundTime() - a_process.getBurstTime();
+//		return wt;
+//	}
 }
