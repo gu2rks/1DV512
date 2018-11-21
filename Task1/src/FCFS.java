@@ -11,80 +11,67 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class FCFS {
 
 	// The list of processes to be scheduled
-	public ArrayList<Process> processes = new ArrayList<Process>();
-	
-	// Queue
-	public ArrayList<Process> queue;
+	public ArrayList<Process> processes;
 
-	private int processTimer = 0;
-	private int brustTimer = 0;
-	private int idle = 0;
-	private boolean finish = false;
-	private boolean isWorking = false;
-	Process currentProcess;
+	public int processTimer = 0;
+	public int brustTimer = 0;
+	public int idle = 0;
+	public boolean isWorking = false;
+	public Process currentProcess;
 
 	// Class constructor
 	public FCFS(ArrayList<Process> processes) {
-		
-		queue = sortByAT(processes);
-
+		this.processes = sortByAT(processes);
 	}
 
 	public void run() {
+		// queue for process that need to be execute
+		ArrayList<Process> queue = new ArrayList<Process>();
 
-		while (!queue.isEmpty() && !finish) {
-			nextProcess();
-		}
-		printTable();
-		System.out.println("done time" + processTimer);
-	}
+		while (!processes.isEmpty()) {
 
-	private void nextProcess() {
-		if (!isWorking) {
-			currentProcess = queue.get(0);
-			System.out.println("new pid in queue" + currentProcess.processId);
-			isWorking = true;
-			
-			if(processTimer < currentProcess.getArrivalTime()) {
+			// check if any process is runing/working now
+			if (!isWorking) {
+				currentProcess = processes.get(0);
+				isWorking = true;
+
+				if (processTimer < currentProcess.getArrivalTime()) {
+					processTimer++;
+					brustTimer = 0;
+					isWorking = false;
+				}
+
+			} else {
+				brustTimer++;
 				processTimer++;
-				brustTimer = 0;
+				// when process X is done
+				if (brustTimer == currentProcess.burstTime) {
+					// set CT
+					currentProcess.setCompletedTime(processTimer);
+
+					// set TAT
+					currentProcess
+							.setTurnaroundTime(currentProcess.getCompletedTime() - currentProcess.getArrivalTime());
+					// set WT
+					currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
+					// add process
+					queue.add(currentProcess);
+					System.out.println("add in processes" + queue.get(queue.size() - 1).processId);
+					processes.remove(0); // remove process that have been executed
+
+					isWorking = false; // done working
+
+					brustTimer = 0; // reset
+				}
 			}
 
 		}
-		else {
-			execute();
-		}
-	}
-
-	private void execute() {
-		brustTimer++;
-		processTimer++;
-		//when process X is done
-		if (brustTimer == currentProcess.burstTime) {
-			//set CT
-			currentProcess.setCompletedTime(processTimer);
-			System.out.println("CT : "+currentProcess.getCompletedTime());
-			//set TAT
-			currentProcess.setTurnaroundTime(currentProcess.getCompletedTime() - currentProcess.getArrivalTime());
-			System.out.println("TAT : "+currentProcess.getTurnaroundTime());
-			//set WT
-			currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
-			System.out.println("WT : "+currentProcess.getWaitingTime());
-			
-			//add process
-			processes.add(currentProcess);
-			System.out.println("add in processes" + processes.get(processes.size() - 1).processId);
-			queue.remove(0);
-			
-			isWorking = false; // done working
-			
-			brustTimer = 0; // reset
+		for (Process q : queue) {
+			processes.add(q);
 		}
 
 	}
