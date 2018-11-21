@@ -17,19 +17,61 @@ public class FCFS {
 	// The list of processes to be scheduled
 	public ArrayList<Process> processes;
 
-	private int m_completedTime;
+	public int processTimer = 0;
+	public int brustTimer = 0;
+	public int idle = 0;
+	public boolean isWorking = false;
+	public Process currentProcess;
 
 	// Class constructor
 	public FCFS(ArrayList<Process> processes) {
+		// sort processes by AT and put it in the queue(processes)
 		this.processes = sortByAT(processes);
-		this.m_completedTime = 0;
 	}
 
 	public void run() {
-		for (Process a_process : processes) {
-			a_process.setCompletedTime(calculateCT(a_process));
-			a_process.setTurnaroundTime(calculateTAT(a_process));
-			a_process.setWaitingTime(calculateWT(a_process));
+		// list of process that have been executed
+		ArrayList<Process> executed = new ArrayList<Process>();
+
+		while (!processes.isEmpty()) {
+
+			// check if any process is runing/working now
+			if (!isWorking) {
+				// if no process working in queue -> get new process
+				currentProcess = processes.get(0);
+				isWorking = true;
+
+				// if processTime is not reach AT time of current process yet -> stay Idle
+				if (processTimer < currentProcess.getArrivalTime()) {
+					processTimer++;
+					brustTimer = 0;
+					isWorking = false;
+				}
+
+			} else {
+				brustTimer++;
+				processTimer++;
+				// process X is done
+				if (brustTimer == currentProcess.burstTime) {
+					// set CT
+					currentProcess.setCompletedTime(processTimer);
+					// set TAT
+					currentProcess.setTurnaroundTime(currentProcess.getCompletedTime() - currentProcess.getArrivalTime());
+					// set WT
+					currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
+					// currentProcess = done processing -> add to executed list
+					executed.add(currentProcess);
+					processes.remove(0); // remove process that have been executed
+					isWorking = false; // done working
+
+					brustTimer = 0; // reset
+				}
+			}
+
+		}
+		// add all executed processes back to the processes
+		for (Process q : executed) {
+			processes.add(q);
 		}
 
 	}
@@ -106,33 +148,18 @@ public class FCFS {
 		System.out.println(a_border + "\n|" + a_PIDLine + "|" + "\n" + a_border + "\n" + a_CTLine
 				+ "\n* = indicates the CPU idle time");
 	}
-
-	private ArrayList<Process> sortByAT(ArrayList<Process> m_processes) {
-		Collections.sort(m_processes, new Comparator<Process>() {
+	
+	/*
+	 * @param proceeses to be sort by using arrival time
+	 */
+	private ArrayList<Process> sortByAT(ArrayList<Process> a_processes) {
+		Collections.sort(a_processes, new Comparator<Process>() {
 			@Override
 			public int compare(Process p1, Process p2) {
 				return p1.getArrivalTime() - p2.getArrivalTime();
 			}
 		});
-		return m_processes;
+		return a_processes;
 	}
 
-	private int calculateCT(Process a_process) {
-		if (a_process.getArrivalTime() <= m_completedTime) {
-			m_completedTime = m_completedTime + a_process.getBurstTime();
-		} else {
-			m_completedTime = a_process.getArrivalTime() + a_process.getBurstTime();
-		}
-		return m_completedTime;
-	}
-
-	private int calculateTAT(Process a_process) {
-		int tat = a_process.getCompletedTime() - a_process.getArrivalTime();
-		return tat;
-	}
-
-	private int calculateWT(Process a_process) {
-		int wt = a_process.getTurnaroundTime() - a_process.getBurstTime();
-		return wt;
-	}
 }

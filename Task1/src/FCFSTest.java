@@ -34,15 +34,15 @@ public class FCFSTest {
 
 		FCFS myFcfs = new FCFS(listOfProcesses);
 		myFcfs.run();
-
+		myFcfs.printGanttChart();
+		myFcfs.printTable();
+		
 		for (int i = 0; i < listOfProcesses.size(); i++) {
 			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
 			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
 			assertEquals(processTAT[i], listOfProcesses.get(i).getTurnaroundTime());
 			assertEquals(processWT[i], listOfProcesses.get(i).getWaitingTime());
 		}
-		myFcfs.printTable();
-		myFcfs.printGanttChart();
 
 	}
 
@@ -64,7 +64,7 @@ public class FCFSTest {
 
 		FCFS myFcfs = new FCFS(listOfProcesses);
 		myFcfs.run();
-
+		
 		for (int i = 0; i < listOfProcesses.size(); i++) {
 			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
 			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
@@ -145,7 +145,7 @@ public class FCFSTest {
 
 		FCFS myFcfs = new FCFS(listOfProcesses);
 		myFcfs.run();
-
+		
 		for (int i = 0; i < listOfProcesses.size(); i++) {
 			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
 			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
