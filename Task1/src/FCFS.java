@@ -17,11 +17,10 @@ public class FCFS {
 	// The list of processes to be scheduled
 	public ArrayList<Process> processes;
 
-	public int processTimer = 0;
-	public int brustTimer = 0;
-	public int idle = 0;
-	public boolean isWorking = false;
-	public Process currentProcess;
+	private int processTimer = 0;
+	private int brustTimer = 0;
+	private boolean isWorking = false;
+	private Process currentProcess;
 
 	// Class constructor
 	public FCFS(ArrayList<Process> processes) {
@@ -32,10 +31,10 @@ public class FCFS {
 	public void run() {
 		// list of process that have been executed
 		ArrayList<Process> executed = new ArrayList<Process>();
-
+		
 		while (!processes.isEmpty()) {
 
-			// check if any process is runing/working now
+			//if NO process is running/working now
 			if (!isWorking) {
 				// if no process working in queue -> get new process
 				currentProcess = processes.get(0);
@@ -47,8 +46,8 @@ public class FCFS {
 					brustTimer = 0;
 					isWorking = false;
 				}
-
-			} else {
+				
+			} else { //process is running
 				brustTimer++;
 				processTimer++;
 				// process X is done
