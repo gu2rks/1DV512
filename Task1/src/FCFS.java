@@ -25,20 +25,23 @@ public class FCFS {
 
 	// Class constructor
 	public FCFS(ArrayList<Process> processes) {
+		// sort processes by AT and put it in the queue(processes)
 		this.processes = sortByAT(processes);
 	}
 
 	public void run() {
-		// queue for process that need to be execute
-		ArrayList<Process> queue = new ArrayList<Process>();
+		// list of process that have been executed
+		ArrayList<Process> executed = new ArrayList<Process>();
 
 		while (!processes.isEmpty()) {
 
 			// check if any process is runing/working now
 			if (!isWorking) {
+				// if no process working in queue -> get new process
 				currentProcess = processes.get(0);
 				isWorking = true;
 
+				// if processTime is not reach AT time of current process yet -> stay Idle
 				if (processTimer < currentProcess.getArrivalTime()) {
 					processTimer++;
 					brustTimer = 0;
@@ -48,21 +51,17 @@ public class FCFS {
 			} else {
 				brustTimer++;
 				processTimer++;
-				// when process X is done
+				// process X is done
 				if (brustTimer == currentProcess.burstTime) {
 					// set CT
 					currentProcess.setCompletedTime(processTimer);
-
 					// set TAT
-					currentProcess
-							.setTurnaroundTime(currentProcess.getCompletedTime() - currentProcess.getArrivalTime());
+					currentProcess.setTurnaroundTime(currentProcess.getCompletedTime() - currentProcess.getArrivalTime());
 					// set WT
 					currentProcess.setWaitingTime(currentProcess.getTurnaroundTime() - currentProcess.getBurstTime());
-					// add process
-					queue.add(currentProcess);
-					System.out.println("add in processes" + queue.get(queue.size() - 1).processId);
+					// currentProcess = done processing -> add to executed list
+					executed.add(currentProcess);
 					processes.remove(0); // remove process that have been executed
-
 					isWorking = false; // done working
 
 					brustTimer = 0; // reset
@@ -70,7 +69,8 @@ public class FCFS {
 			}
 
 		}
-		for (Process q : queue) {
+		// add all executed processes back to the processes
+		for (Process q : executed) {
 			processes.add(q);
 		}
 
@@ -148,7 +148,10 @@ public class FCFS {
 		System.out.println(a_border + "\n|" + a_PIDLine + "|" + "\n" + a_border + "\n" + a_CTLine
 				+ "\n* = indicates the CPU idle time");
 	}
-
+	
+	/*
+	 * @param proceeses to be sort by using arrival time
+	 */
 	private ArrayList<Process> sortByAT(ArrayList<Process> a_processes) {
 		Collections.sort(a_processes, new Comparator<Process>() {
 			@Override

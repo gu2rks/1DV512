@@ -29,21 +29,14 @@ public class FCFSTest {
 		//the second method parameter is the arrival time
 		//the third method parameter is the burst time
 		listOfProcesses.add(new Process(1, 0, 2));
-		System.out.println(listOfProcesses.size());
-
 		listOfProcesses.add(new Process(2, 3, 1));
-		System.out.println(listOfProcesses.size());
-
 		listOfProcesses.add(new Process(3, 5, 6));
-		System.out.println(listOfProcesses.size());
 
 		FCFS myFcfs = new FCFS(listOfProcesses);
-		System.out.println(listOfProcesses.size());
 		myFcfs.run();
 		myFcfs.printGanttChart();
 		myFcfs.printTable();
 		
-		System.out.println(listOfProcesses.size());
 		for (int i = 0; i < listOfProcesses.size(); i++) {
 			assertEquals(processIds[i], listOfProcesses.get(i).getProcessId());
 			assertEquals(processCT[i], listOfProcesses.get(i).getCompletedTime());
