@@ -9,7 +9,7 @@ public class ChopStick {
 		this.id = id;
 	}
 	
-	public int getID() {
+	public int getId() {
         return id;
     }
 	

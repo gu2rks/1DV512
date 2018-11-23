@@ -8,6 +8,7 @@ public class Philosopher implements Runnable {
 	private State state;
 	private Random randomGenerator = new Random();
 	private boolean DEBUG = false;
+	private boolean eating = false;
 
 	private int numberOfEatingTurns = 0;
 	private int numberOfThinkingTurns = 0;
@@ -99,12 +100,23 @@ public class Philosopher implements Runnable {
 		 * comprehensive comments to explain your implementation, including deadlock
 		 * prevention/detection
 		 */
-//		try {
-//			
-//		}
-//		catch (InterruptedException ie){
-//			ie.printStackTrace();
-//		}
+		try {
+			long startHungryTimer = System.currentTimeMillis();
+			while (!eating) { //not eating
+				thinking();
+				System.out.println("philosopher " + getId() + " is " + state);
+				pickUpLeft();
+				pickUpRight();
+				long endHungryTimer = System.currentTimeMillis();
+				totalHungryTime += (endHungryTimer - startHungryTimer);
+				eating();
+				putDown();
+			}
+
+		}
+		catch (InterruptedException ie){
+			ie.printStackTrace();
+		}
 
 	}
 
@@ -146,10 +158,13 @@ public class Philosopher implements Runnable {
 	
 	private void pickUpLeft() {
 		leftChopStick.getlock().lock();
+		 System.out.println("philosopher " + getId() + " picked up left chopstick[ ID :" + leftChopStick.getId() + "]");
 	}
 	
 	private void pickUpRight() {
 		rightChopStick.getlock().lock();
+		 System.out.println("philosopher " + getId() + " picked up right chopstick[ ID :" + rightChopStick.getId() + "]");
+
 	}
 	
 	private void putDown() {
