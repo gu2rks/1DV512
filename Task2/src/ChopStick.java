@@ -9,6 +9,18 @@ public class ChopStick {
 		this.id = id;
 	}
 	
+	public int getID() {
+        return id;
+    }
+	
+	public Lock getlock() {
+		return myLock;
+	}
+	
+	public boolean lockIsFree() {
+		return myLock.tryLock();
+	}
+	
 	/* TODO
 	 * Implement the pickup and put down chopstick logic
 	 * Please note that the same chopstick can not be picked up by more than one philosopher at a time.
