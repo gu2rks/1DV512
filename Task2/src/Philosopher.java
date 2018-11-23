@@ -105,4 +105,16 @@ public class Philosopher implements Runnable {
 		 */
 		
 	}
+	
+	private void thinking() {
+		state = State.THINKING;
+	}
+	
+	private void eating() {
+		state = State.EATING;
+	}
+	
+	private void hungry() {
+		state = State.HUNGRY;
+	}
 }
