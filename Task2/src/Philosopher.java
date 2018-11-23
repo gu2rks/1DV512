@@ -58,23 +58,15 @@ public class Philosopher implements Runnable {
 	}
 
 	public double getAverageThinkingTime() {
-		return 0;
+		return totalThinkingTime/thinkingTimer;
 	}
 
 	public double getAverageEatingTime() {
-		/* TODO
-		 * Return the average eating time
-		 * Add comprehensive comments to explain your implementation
-		 */
-		return 0;
+		return totalEatingTime/eatingTimer;
 	}
 
 	public double getAverageHungryTime() {
-		/* TODO
-		 * Return the average hungry time
-		 * Add comprehensive comments to explain your implementation
-		 */
-		return 0;
+		return totalHungryTime/hungryTimer;
 	}
 	
 	public int getNumberOfThinkingTurns() {
