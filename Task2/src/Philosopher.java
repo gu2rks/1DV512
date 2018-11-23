@@ -6,7 +6,9 @@ public class Philosopher implements Runnable {
 	private final ChopStick leftChopStick;
 	private final ChopStick rightChopStick;
 	private State state;
+	private static final int MAXTIME = 1000;
 	private Random randomGenerator = new Random();
+	private boolean DEBUG = false;
 	
 	private int numberOfEatingTurns = 0;
 	private int numberOfThinkingTurns = 0;
@@ -106,15 +108,30 @@ public class Philosopher implements Runnable {
 		
 	}
 	
-	private void thinking() {
+	private int genarateSleepTime() {
+		return randomGenerator.nextInt(MAXTIME);
+	}
+	private void thinking() throws InterruptedException {
 		state = State.THINKING;
+		System.out.println("Philosopher " + getId() + " is " + state);
+		int sleepTime = genarateSleepTime();
+		Thread.sleep(sleepTime);
+        totalThinkingTime = sleepTime + thinkingTimer;
+        thinkingTimer++;
+        hungry();
 	}
 	
-	private void eating() {
+	private void eating() throws InterruptedException {
 		state = State.EATING;
+		System.out.println("Philosopher " + getId() + " is " + state);
+		int sleepTime = genarateSleepTime();
+		Thread.sleep(sleepTime);
+        totalEatingTime = sleepTime + eatingTimer;
+        eatingTimer++;
 	}
 	
 	private void hungry() {
 		state = State.HUNGRY;
+		hungryTimer++;
 	}
 }
