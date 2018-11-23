@@ -3,19 +3,31 @@ import java.util.Random;
 public class Philosopher implements Runnable {
 	
 	private int id;
-	
 	private final ChopStick leftChopStick;
 	private final ChopStick rightChopStick;
-	
+	private State state;
 	private Random randomGenerator = new Random();
 	
 	private int numberOfEatingTurns = 0;
 	private int numberOfThinkingTurns = 0;
 	private int numberOfHungryTurns = 0;
-
-	private double thinkingTime = 0;
-	private double eatingTime = 0;
-	private double hungryTime = 0;
+	
+	//total time
+	private double totalThinkingTime = 0;
+	private double totalEatingTime = 0;
+	private double totalHungryTime = 0;
+	//timer
+	private double thinkingTimer = 0;
+	private double eatingTimer = 0;
+	private double hungryTimer = 0;
+	
+	
+	
+	private enum State{
+		THINKING,
+        HUNGRY,
+        EATING
+	}
 	
 	public Philosopher(int id, ChopStick leftChopStick, ChopStick rightChopStick, int seed) {
 		this.id = id;
@@ -46,10 +58,6 @@ public class Philosopher implements Runnable {
 	}
 
 	public double getAverageThinkingTime() {
-		/* TODO
-		 * Return the average thinking time
-		 * Add comprehensive comments to explain your implementation
-		 */
 		return 0;
 	}
 
@@ -82,15 +90,15 @@ public class Philosopher implements Runnable {
 	}
 
 	public double getTotalThinkingTime() {
-		return thinkingTime;
+		return totalThinkingTime;
 	}
 
 	public double getTotalEatingTime() {
-		return eatingTime;
+		return totalEatingTime;
 	}
 
 	public double getTotalHungryTime() {
-		return hungryTime;
+		return totalHungryTime;
 	}
 
 	@Override
