@@ -7,21 +7,16 @@ public class Philosopher implements Runnable {
 	private final ChopStick rightChopStick;
 	private State state;
 	private Random randomGenerator = new Random();
-	private boolean DEBUG = false;
-	private boolean eating = false;
 
-	private int numberOfEatingTurns = 0;
-	private int numberOfThinkingTurns = 0;
-	private int numberOfHungryTurns = 0;
 
 	// total time
 	private double totalThinkingTime = 0;
 	private double totalEatingTime = 0;
 	private double totalHungryTime = 0;
 	// timer
-	private double thinkingTimer = 0;
-	private double eatingTimer = 0;
-	private double hungryTimer = 0;
+	private int thinkingTimer = 0;
+	private int eatingTimer = 0;
+	private int hungryTimer = 0;
 
 	private enum State {
 		THINKING, HUNGRY, EATING
@@ -69,15 +64,15 @@ public class Philosopher implements Runnable {
 	}
 
 	public int getNumberOfThinkingTurns() {
-		return numberOfThinkingTurns;
+		return thinkingTimer;
 	}
 
 	public int getNumberOfEatingTurns() {
-		return numberOfEatingTurns;
+		return eatingTimer;
 	}
 
 	public int getNumberOfHungryTurns() {
-		return numberOfHungryTurns;
+		return hungryTimer;
 	}
 
 	public double getTotalThinkingTime() {
@@ -101,9 +96,11 @@ public class Philosopher implements Runnable {
 		 * prevention/detection
 		 */
 		try {
-			long startHungryTimer = System.currentTimeMillis();
-			while (!eating) { //not eating
+			
+			while (!Thread.interrupted()) { //not eating
 				thinking();
+				long startHungryTimer = System.currentTimeMillis();
+				hungry();
 				System.out.println("philosopher " + getId() + " is " + state);
 				pickUpLeft();
 				pickUpRight();
@@ -115,7 +112,7 @@ public class Philosopher implements Runnable {
 
 		}
 		catch (InterruptedException ie){
-			ie.printStackTrace();
+            System.out.println("Philosopher_" + id + " " + "exiting via interruption");
 		}
 
 	}
@@ -137,7 +134,7 @@ public class Philosopher implements Runnable {
 		System.out.println("Philosopher " + getId() + " is " + state);
 		int rnThinkingTime = genarateSleepTime();
 		Thread.sleep(rnThinkingTime);
-		totalThinkingTime = rnThinkingTime + thinkingTimer;
+		totalThinkingTime += rnThinkingTime;
 		thinkingTimer++;
 		hungry();
 	}
@@ -147,7 +144,7 @@ public class Philosopher implements Runnable {
 		System.out.println("Philosopher " + getId() + " is " + state);
 		int rnEatingTime = genarateSleepTime();
 		Thread.sleep(rnEatingTime);
-		totalEatingTime = rnEatingTime + eatingTimer;
+		totalEatingTime += rnEatingTime;
 		eatingTimer++;
 	}
 
