@@ -100,7 +100,6 @@ public class Philosopher implements Runnable {
 			while (!Thread.interrupted()) { //not eating
 				thinking();
 				long startHungryTimer = System.currentTimeMillis();
-				hungry();
 				System.out.println("philosopher " + getId() + " is " + state);
 				pickUpLeft();
 				pickUpRight();

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DinigPhilosopherTest {
@@ -68,97 +69,99 @@ public class DinigPhilosopherTest {
 		}
 	}
 
-//	@Test
-//	public void test2() throws InterruptedException {
-//		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
-//		int simTime = 3000;
-//		int seed = 100;
-//		dp.DEBUG = false;
-//
-//		dp.initialize(simTime, seed); // initialize the required objects
-//
-//		dp.start(); // start the simulation process
-//
-//		ArrayList<Philosopher> philosophers = dp.getPhilosophers(); // get the philosophers
-//		/*
-//		 * the following code prints a table where each row corresponds to one of the Philosophers,
-//		 * columns correspond to the Philosopher ID (PID), average think time (ATT), average eating time (AET), average hungry time (AHT), number of thinking turns(#TT), number of eating turns(#ET), and number of hungry turns(#HT).
-//		 */
-//
-//		dp.printTable();
-//
-//		for (Philosopher p : philosophers) {
-//
-//			assertTrue("The average eating times may not be correct!", p.getAverageEatingTime() > 10 && p.getAverageEatingTime() < 990);
-//			assertTrue("The average thinking times may not be correct!", p.getAverageThinkingTime() > 10 && p.getAverageThinkingTime() < 990);
-//
-//			if(p.getId() == 0) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 894);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 250);
-//			}
-//			else if(p.getId() == 1) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 421);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 872);
-//			}
-//			else if(p.getId() == 2) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 774);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 337);
-//			}
-//			else if(p.getId() == 3) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 416);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 542);
-//			}
-//			else if(p.getId() == 4) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 370);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 284);
-//			}
-//		}
-//	}
-//
-//	@Test
-//	public void test3() throws InterruptedException {
-//		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
-//		int simTime = 10000;
-//		int seed = 100;
-//		dp.DEBUG = false;
-//
-//		dp.initialize(simTime, seed); // initialize the required objects
-//
-//		dp.start(); // start the simulation process
-//
-//		ArrayList<Philosopher> philosophers = dp.getPhilosophers(); // get the philosophers
-//		/*
-//		 * the following code prints a table where each row corresponds to one of the Philosophers,
-//		 * columns correspond to the Philosopher ID (PID), average think time (ATT), average eating time (AET), average hungry time (AHT), number of thinking turns(#TT), number of eating turns(#ET), and number of hungry turns(#HT).
-//		 */
-//		dp.printTable();
-//
-//		for (Philosopher p : philosophers) {
-//
-//			assertTrue("The average eating times may not be correct!", p.getAverageEatingTime() > 10 && p.getAverageEatingTime() < 990);
-//			assertTrue("The average thinking times may not be correct!", p.getAverageThinkingTime() > 10 && p.getAverageThinkingTime() < 990);
-//
-//			if(p.getId() == 0) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 531);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 603);
-//			}
-//			else if(p.getId() == 1) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 429);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 466);
-//			}
-//			else if(p.getId() == 2) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 610);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 506);
-//			}
-//			else if(p.getId() == 3) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 285);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 621);
-//			}
-//			else if(p.getId() == 4) {
-//				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 352);
-//				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 397);
-//			}
-//		}
-//	}
+	@Test
+	@Ignore
+	public void test2() throws InterruptedException {
+		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
+		int simTime = 3000;
+		int seed = 100;
+		dp.DEBUG = false;
+
+		dp.initialize(simTime, seed); // initialize the required objects
+
+		dp.start(); // start the simulation process
+
+		ArrayList<Philosopher> philosophers = dp.getPhilosophers(); // get the philosophers
+		/*
+		 * the following code prints a table where each row corresponds to one of the Philosophers,
+		 * columns correspond to the Philosopher ID (PID), average think time (ATT), average eating time (AET), average hungry time (AHT), number of thinking turns(#TT), number of eating turns(#ET), and number of hungry turns(#HT).
+		 */
+
+		dp.printTable();
+
+		for (Philosopher p : philosophers) {
+
+			assertTrue("The average eating times may not be correct!", p.getAverageEatingTime() > 10 && p.getAverageEatingTime() < 990);
+			assertTrue("The average thinking times may not be correct!", p.getAverageThinkingTime() > 10 && p.getAverageThinkingTime() < 990);
+
+			if(p.getId() == 0) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 894);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 250);
+			}
+			else if(p.getId() == 1) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 421);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 872);
+			}
+			else if(p.getId() == 2) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 774);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 337);
+			}
+			else if(p.getId() == 3) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 416);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 542);
+			}
+			else if(p.getId() == 4) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 370);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 284);
+			}
+		}
+	}
+
+	@Test
+	@Ignore
+	public void test3() throws InterruptedException {
+		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
+		int simTime = 10000;
+		int seed = 100;
+		dp.DEBUG = false;
+
+		dp.initialize(simTime, seed); // initialize the required objects
+
+		dp.start(); // start the simulation process
+
+		ArrayList<Philosopher> philosophers = dp.getPhilosophers(); // get the philosophers
+		/*
+		 * the following code prints a table where each row corresponds to one of the Philosophers,
+		 * columns correspond to the Philosopher ID (PID), average think time (ATT), average eating time (AET), average hungry time (AHT), number of thinking turns(#TT), number of eating turns(#ET), and number of hungry turns(#HT).
+		 */
+		dp.printTable();
+
+		for (Philosopher p : philosophers) {
+
+			assertTrue("The average eating times may not be correct!", p.getAverageEatingTime() > 10 && p.getAverageEatingTime() < 990);
+			assertTrue("The average thinking times may not be correct!", p.getAverageThinkingTime() > 10 && p.getAverageThinkingTime() < 990);
+
+			if(p.getId() == 0) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 531);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 603);
+			}
+			else if(p.getId() == 1) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 429);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 466);
+			}
+			else if(p.getId() == 2) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 610);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 506);
+			}
+			else if(p.getId() == 3) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 285);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 621);
+			}
+			else if(p.getId() == 4) {
+				assertTrue("The average thinking time may not be correct!", Math.floor(p.getAverageThinkingTime()) == 352);
+				assertTrue("The average eating time may not be correct!", Math.floor(p.getAverageEatingTime()) == 397);
+			}
+		}
+	}
 
 }
