@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DinigPhilosopherTest {
@@ -69,6 +70,7 @@ public class DinigPhilosopherTest {
 	}
 
 	@Test
+	@Ignore
 	public void test2() throws InterruptedException {
 		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
 		int simTime = 3000;
@@ -116,6 +118,7 @@ public class DinigPhilosopherTest {
 	}
 
 	@Test
+	@Ignore
 	public void test3() throws InterruptedException {
 		DiningPhilosopher dp = new DiningPhilosopher(); // create an instance to DiningPhilosopher class
 		int simTime = 10000;
